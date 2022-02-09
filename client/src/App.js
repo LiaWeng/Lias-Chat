@@ -1,7 +1,25 @@
-import './App.css';
+import React, { useEffect } from 'react'
+import './App.css'
+import { useDispatch } from 'react-redux'
+
+import Login from './components/Login'
 
 const App = () => {
-  return <div></div>;
-};
+  const dispatch = useDispatch()
 
-export default App;
+  useEffect(() => {
+    const loggedUser = localStorage.getItem('logged-user-id')
+    dispatch({
+      type: 'SET_USER',
+      data: loggedUser,
+    })
+  })
+
+  return (
+    <div>
+      <Login />
+    </div>
+  )
+}
+
+export default App
