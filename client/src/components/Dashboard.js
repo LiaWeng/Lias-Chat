@@ -10,10 +10,10 @@ const Dashboard = () => {
   return (
     <>
       <Grid container>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={4} md={3}>
           <Sidebar />
         </Grid>
-        <Grid item xs={0} sm={8}>
+        <Grid item xs={0} sm={8} md={9}>
           <div>hi</div>
         </Grid>
       </Grid>

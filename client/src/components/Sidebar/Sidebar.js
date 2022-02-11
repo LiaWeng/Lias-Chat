@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Typography, Tabs, Button } from '@mui/material'
+import { Typography, Tabs, Button, Box } from '@mui/material'
 import {
   SidebarContainer,
   UserInfoContainer,
@@ -9,9 +9,11 @@ import {
 } from '../styles'
 import ChatIcon from '@mui/icons-material/Chat'
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 
 import Conversations from './Conversations'
 import Contacts from './Contacts'
+import { Contact } from './Contacts'
 
 const Sidebar = () => {
   const dispatch = useDispatch()
@@ -37,18 +39,19 @@ const Sidebar = () => {
         disableElevation
         onClick={() => dispatch({ type: 'OPEN_MODAL' })}
       >
-        New {tabValue === 0 ? 'Conversation' : 'Contact'}
+        Add New {tabValue === 0 ? 'Conversation' : 'Contact'}
       </SidebarButton>
 
       {tabValue === 0 && <Conversations />}
-
       {tabValue === 1 && <Contacts />}
 
       <UserInfoContainer>
-        <Typography variant='subtitle1' color='secondary'>
-          Signed in as {user}.
-        </Typography>
-        <Button color='error' onClick={() => dispatch({ type: 'CLEAR_USER' })}>
+        <Contact username={user.username} color={user.color} />
+        <Button
+          color='error'
+          onClick={() => dispatch({ type: 'CLEAR_USER' })}
+          sx={{ mb: -0.4 }}
+        >
           Sign out
         </Button>
       </UserInfoContainer>

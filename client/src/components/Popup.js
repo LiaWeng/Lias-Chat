@@ -16,7 +16,14 @@ const Popup = () => {
     e.preventDefault()
 
     try {
-      await addContact(user, contactRef.current.value)
+      const { username, color } = await addContact(
+        user.username,
+        contactRef.current.value
+      )
+      dispatch({
+        type: 'ADD_CONTACT',
+        data: { username, color },
+      })
       dispatch({ type: 'CLOSE_MODAL' })
       setErrorMessage(null)
     } catch (error) {

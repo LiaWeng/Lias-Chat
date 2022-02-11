@@ -15,7 +15,6 @@ export const LoginForm = styled('form')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-around',
-  // height: '250px',
   marginTop: theme.spacing(3),
   // border: '1px solid black',
 }))
@@ -68,4 +67,11 @@ export const ModalTextField = styled(TextField)(({ theme }) => ({
 export const PanelContainer = styled(Box)(({ theme }) => ({
   // border: '1px solid black',
   flexGrow: '1',
+}))
+
+export const ContactContainer = styled(Box)(({ theme }) => ({
+  // border: '1px solid black',
+  padding: theme.spacing(1.5),
+  display: 'flex',
+  alignItems: 'center',
 }))

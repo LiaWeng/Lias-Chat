@@ -3,6 +3,7 @@ import { Typography, Box, TextField, Button, Alert } from '@mui/material'
 import { LoginContainer, LoginForm } from './styles'
 import { useDispatch } from 'react-redux'
 import { createUser, loginUser } from '../services'
+import randomColor from '../colors'
 
 const Login = () => {
   const usernameRef = useRef()
@@ -14,14 +15,14 @@ const Login = () => {
     e.preventDefault()
 
     try {
-      const username = await loginUser(
+      const user = await loginUser(
         usernameRef.current.value,
         passwordRef.current.value
       )
 
       dispatch({
         type: 'SET_USER',
-        data: username,
+        data: user,
       })
     } catch (error) {
       setErrorMessage(error.response.data)
@@ -30,14 +31,15 @@ const Login = () => {
 
   const handleSignup = async () => {
     try {
-      const username = await createUser(
+      const user = await createUser(
         usernameRef.current.value,
-        passwordRef.current.value
+        passwordRef.current.value,
+        randomColor()
       )
 
       dispatch({
         type: 'SET_USER',
-        data: username,
+        data: user,
       })
     } catch (error) {
       setErrorMessage(error.response.data)

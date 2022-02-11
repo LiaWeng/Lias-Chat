@@ -3,7 +3,11 @@ import { createStore, combineReducers } from 'redux'
 export const userReducer = (state = null, action) => {
   switch (action.type) {
     case 'SET_USER': {
-      localStorage.setItem('logged-user-id', action.data)
+      const userInfo = {
+        username: action.data.username,
+        color: action.data.color,
+      }
+      localStorage.setItem('logged-user-info', JSON.stringify(userInfo))
       return action.data
     }
     case 'CLEAR_USER': {
@@ -41,10 +45,23 @@ export const modalReducer = (state = false, action) => {
   }
 }
 
+export const contactsReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'SET_CONTACTS':
+      return action.data
+    case 'ADD_CONTACT':
+      const newState = [...state].concat(action.data)
+      return newState
+    default:
+      return state
+  }
+}
+
 const reducers = combineReducers({
   user: userReducer,
   tab: tabReducer,
   modal: modalReducer,
+  contacts: contactsReducer,
 })
 
 const store = createStore(reducers)
