@@ -38,10 +38,15 @@ const Login = () => {
         />
 
         <Box sx={{ mt: 3 }}>
-          <Button variant='contained' sx={{ mr: 3 }} type='submit'>
+          <Button
+            variant='contained'
+            color='primary'
+            sx={{ mr: 3 }}
+            type='submit'
+          >
             Log In
           </Button>
-          <Button variant='contained' onClick={handleSignup}>
+          <Button variant='contained' color='primary' onClick={handleSignup}>
             Create Account
           </Button>
         </Box>
