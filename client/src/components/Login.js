@@ -1,43 +1,77 @@
-import React, { useRef } from 'react'
-import { Box, TextField, Button } from '@mui/material'
-import { LoginContainer } from './styles'
+import React, { useRef, useState } from 'react'
+import { Typography, Box, TextField, Button, Alert } from '@mui/material'
+import { LoginContainer, LoginForm } from './styles'
 import { useDispatch } from 'react-redux'
+import { createUser, loginUser } from '../services'
 
 const Login = () => {
-  const idRef = useRef()
+  const usernameRef = useRef()
+  const passwordRef = useRef()
   const dispatch = useDispatch()
+  const [errorMessage, setErrorMessage] = useState(null)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
-    dispatch({
-      type: 'SET_USER',
-      data: idRef.current.value,
-    })
-    localStorage.setItem('logged-user-id', idRef.current.value)
+    try {
+      const username = await loginUser(
+        usernameRef.current.value,
+        passwordRef.current.value
+      )
+
+      dispatch({
+        type: 'SET_USER',
+        data: username,
+      })
+    } catch (error) {
+      setErrorMessage(error.response.data)
+    }
   }
 
-  const handleSignup = () => {
-    dispatch({
-      type: 'SET_USER',
-      data: idRef.current.value,
-    })
+  const handleSignup = async () => {
+    try {
+      const username = await createUser(
+        usernameRef.current.value,
+        passwordRef.current.value
+      )
+
+      dispatch({
+        type: 'SET_USER',
+        data: username,
+      })
+    } catch (error) {
+      setErrorMessage(error.response.data)
+    }
   }
 
   return (
     <LoginContainer>
-      <form onSubmit={handleSubmit}>
+      <Typography variant='h5'>Welcome to Lia's Chat</Typography>
+
+      <LoginForm onSubmit={handleSubmit}>
         <TextField
-          id='login-id'
           label='Enter your username'
           type='text'
-          variant='standard'
           required
-          inputRef={idRef}
-          sx={{ width: '30ch' }}
+          inputRef={usernameRef}
+          sx={{ width: '30ch', mb: 2 }}
         />
 
-        <Box sx={{ mt: 3 }}>
+        <TextField
+          label='Enter your password'
+          type='password'
+          required
+          inputRef={passwordRef}
+          sx={{ width: '30ch', mb: 3 }}
+        />
+
+        {errorMessage && (
+          <Alert severity='error' sx={{ mb: 3 }}>
+            {errorMessage}
+          </Alert>
+        )}
+
+        <Box>
           <Button
             variant='contained'
             color='primary'
@@ -50,7 +84,7 @@ const Login = () => {
             Create Account
           </Button>
         </Box>
-      </form>
+      </LoginForm>
     </LoginContainer>
   )
 }

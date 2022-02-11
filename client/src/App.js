@@ -13,14 +13,16 @@ const App = () => {
 
   useEffect(() => {
     const loggedUser = localStorage.getItem('logged-user-id')
-    dispatch({
-      type: 'SET_USER',
-      data: loggedUser,
-    })
 
-    dispatch({
-      type: Number(localStorage.getItem('tab-value')),
-    })
+    if (loggedUser) {
+      dispatch({
+        type: 'SET_USER',
+        data: loggedUser,
+      })
+      dispatch({
+        type: Number(localStorage.getItem('tab-value')),
+      })
+    }
   })
 
   return (

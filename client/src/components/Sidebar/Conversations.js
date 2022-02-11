@@ -1,5 +1,5 @@
 import React from 'react'
-import { PanelContainer } from './styles'
+import { PanelContainer } from '../styles'
 
 const Conversations = () => {
   return <PanelContainer>Conversations</PanelContainer>

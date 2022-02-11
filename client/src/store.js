@@ -2,8 +2,14 @@ import { createStore, combineReducers } from 'redux'
 
 export const userReducer = (state = null, action) => {
   switch (action.type) {
-    case 'SET_USER':
+    case 'SET_USER': {
+      localStorage.setItem('logged-user-id', action.data)
       return action.data
+    }
+    case 'CLEAR_USER': {
+      localStorage.clear()
+      return null
+    }
     default:
       return state
   }
@@ -14,8 +20,10 @@ export const userReducer = (state = null, action) => {
 export const tabReducer = (state = 0, action) => {
   switch (action.type) {
     case 0:
+      localStorage.setItem('tab-value', 0)
       return 0
     case 1:
+      localStorage.setItem('tab-value', 1)
       return 1
     default:
       return state

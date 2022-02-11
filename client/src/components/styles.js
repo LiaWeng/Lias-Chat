@@ -11,23 +11,33 @@ export const LoginContainer = styled(Box)(({ theme }) => ({
   // border: '1px solid black',
 }))
 
+export const LoginForm = styled('form')(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-around',
+  // height: '250px',
+  marginTop: theme.spacing(3),
+  // border: '1px solid black',
+}))
+
 export const SidebarContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   height: '100vh',
-  width: '30vw',
   boxShadow: `0 0 10px ${theme.palette.secondary.main}`,
-  [theme.breakpoints.down('sm')]: {
-    display: 'none',
-  },
+}))
+
+export const UserInfoContainer = styled(Box)(({ theme }) => ({
+  height: '8vh',
+  display: 'flex',
+  justifyContent: 'space-around',
+  alignItems: 'center',
+  // border: '1px solid black',
 }))
 
 export const StyledTab = styled(Tab)(({ theme }) => ({
-  width: '15vw',
+  width: '50%',
   fontWeight: 600,
-  [theme.breakpoints.down('sm')]: {
-    display: 'none',
-  },
 }))
 
 export const SidebarButton = styled(Button)(({ theme }) => ({
@@ -36,14 +46,18 @@ export const SidebarButton = styled(Button)(({ theme }) => ({
 
 export const ModalBox = styled(Box)(({ theme }) => ({
   backgroundColor: 'white',
-  width: '40%',
+  width: '50%',
   maxWidth: '500px',
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   borderRadius: theme.shape.borderRadius,
+  boxSizing: 'border-box',
   padding: theme.spacing(3),
+  [theme.breakpoints.down('sm')]: {
+    width: '80%',
+  },
 }))
 
 export const ModalTextField = styled(TextField)(({ theme }) => ({
