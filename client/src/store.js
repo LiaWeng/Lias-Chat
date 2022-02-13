@@ -57,11 +57,24 @@ export const contactsReducer = (state = [], action) => {
   }
 }
 
+export const conversationsReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'SET_CONVERSATIONS':
+      return action.data
+    case 'ADD_CONVERSATION':
+      const newState = [...state].concat(action.data)
+      return newState
+    default:
+      return state
+  }
+}
+
 const reducers = combineReducers({
   user: userReducer,
   tab: tabReducer,
   modal: modalReducer,
   contacts: contactsReducer,
+  conversations: conversationsReducer,
 })
 
 const store = createStore(reducers)

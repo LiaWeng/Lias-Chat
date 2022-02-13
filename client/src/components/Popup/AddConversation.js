@@ -1,17 +1,16 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   Modal,
   Typography,
   Button,
   Alert,
-  FormControl,
   FormGroup,
   FormControlLabel,
   Checkbox,
 } from '@mui/material'
 import { ModalContainer, ModalFormControl } from './../styles'
-import { addContact } from './../../services'
+import { addConversation } from './../../services'
 import { Contact } from '../Sidebar/Contacts'
 
 const AddConversation = () => {
@@ -30,8 +29,7 @@ const AddConversation = () => {
       newSelected.splice(selected.indexOf(username), 1)
       setSelected(newSelected)
     } else {
-      const newSelected = [...selected, username]
-      setSelected(newSelected)
+      setSelected(selected.concat(username))
     }
   }
 
@@ -40,6 +38,14 @@ const AddConversation = () => {
 
     if (selected.length === 0) {
       setErrorMessage('Please select at least one user.')
+    } else {
+      try {
+        const x = await addConversation(selected.concat(user.username))
+        dispatch({ type: 'CLOSE_MODAL' })
+        setErrorMessage(null)
+      } catch (error) {
+        setErrorMessage(error.response.data)
+      }
     }
   }
 

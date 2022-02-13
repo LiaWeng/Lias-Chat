@@ -4,7 +4,8 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 
 const usersRouter = require('./routers/usersRouter')
-const contactsRouter = require('./routers/contactsReducer')
+const contactsRouter = require('./routers/contactsRouter')
+const conversationsRouter = require('./routers/conversationsRouter')
 // const path = require('path')
 
 const app = express()
@@ -23,6 +24,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/users', usersRouter)
 app.use('/api/contacts', contactsRouter)
+app.use('/api/conversations', conversationsRouter)
 
 app.use((err, req, res, next) => {
   console.error(err.stack)

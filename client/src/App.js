@@ -3,7 +3,7 @@ import './App.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { ThemeProvider } from '@mui/material/styles'
 import theme from './theme'
-import { getContacts } from './services'
+import { getContacts, getConversation } from './services'
 
 import Login from './components/Login'
 import Dashboard from './components/Dashboard'
@@ -11,6 +11,7 @@ import Dashboard from './components/Dashboard'
 const App = () => {
   const dispatch = useDispatch()
   const user = useSelector(({ user }) => user)
+  const conversations = useSelector(({ conversations }) => conversations)
 
   useEffect(() => {
     const loggedUser = JSON.parse(localStorage.getItem('logged-user-info'))
@@ -24,6 +25,7 @@ const App = () => {
   }, []) //eslint-disable-line
 
   useEffect(() => {
+    //get contacts and conversations
     if (user) {
       getContacts(user.username).then((contacts) => {
         dispatch({
@@ -31,8 +33,17 @@ const App = () => {
           data: contacts,
         })
       })
+
+      getConversation(user.username).then((conversations) => {
+        dispatch({
+          type: 'SET_CONVERSATIONS',
+          data: conversations,
+        })
+      })
     }
   }, [user]) //eslint-disable-line
+
+  console.log(conversations)
 
   useEffect(() => {
     dispatch({

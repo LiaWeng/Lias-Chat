@@ -10,6 +10,12 @@ const userSchema = new mongoose.Schema({
       ref: 'User',
     },
   ],
+  conversations: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Conversation',
+    },
+  ],
 })
 
 userSchema.set('toJSON', {

@@ -23,3 +23,13 @@ export const getContacts = async (username) => {
   const res = await axios.post('/api/contacts/get', { username })
   return res.data
 }
+
+export const addConversation = async (usernames) => {
+  const res = await axios.post('/api/conversations/add', usernames)
+  return res.data
+}
+
+export const getConversation = async (username) => {
+  const res = await axios.post('/api/conversations/get', { username })
+  return res.data
+}
