@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
 import { Grid } from '@mui/material'
+import { useSelector } from 'react-redux'
 
 import Sidebar from './Sidebar/Sidebar'
-import Popup from './Popup'
+// import Popup from './Popup/Popup'
+import AddConversation from './Popup/AddConversation'
+import AddContact from './Popup/AddContact'
 
 const Dashboard = () => {
   // const user = useSelector(({ user }) => user)
+  const tabValue = useSelector(({ tab }) => tab)
 
   return (
     <>
@@ -17,7 +21,10 @@ const Dashboard = () => {
           <div>hi</div>
         </Grid>
       </Grid>
-      <Popup />
+
+      {tabValue === 0 && <AddConversation />}
+      {tabValue === 1 && <AddContact />}
+      {/* <Popup /> */}
     </>
   )
 }

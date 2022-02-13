@@ -1,5 +1,13 @@
 import { styled } from '@mui/material/styles'
-import { Box, Tabs, Tab, Button, TextField } from '@mui/material'
+import {
+  Box,
+  Tabs,
+  Tab,
+  Button,
+  TextField,
+  Modal,
+  FormControl,
+} from '@mui/material'
 
 export const LoginContainer = styled(Box)(({ theme }) => ({
   height: '100vh',
@@ -43,8 +51,10 @@ export const SidebarButton = styled(Button)(({ theme }) => ({
   borderRadius: 0,
 }))
 
-export const ModalBox = styled(Box)(({ theme }) => ({
+export const ModalContainer = styled(Box)(({ theme }) => ({
   backgroundColor: 'white',
+  display: 'flex',
+  flexDirection: 'column',
   width: '50%',
   maxWidth: '500px',
   position: 'absolute',
@@ -64,13 +74,19 @@ export const ModalTextField = styled(TextField)(({ theme }) => ({
   margin: `${theme.spacing(3)} 0`,
 }))
 
-export const PanelContainer = styled(Box)(({ theme }) => ({
+export const ModalFormControl = styled(FormControl)(({ theme }) => ({
+  width: '100%',
+  margin: `${theme.spacing(2)} 0`,
+  maxHeight: '150px',
+  overflowY: 'auto',
   // border: '1px solid black',
+}))
+
+export const PanelContainer = styled(Box)(({ theme }) => ({
   flexGrow: '1',
 }))
 
 export const ContactContainer = styled(Box)(({ theme }) => ({
-  // border: '1px solid black',
   padding: theme.spacing(1.5),
   display: 'flex',
   alignItems: 'center',
