@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { PanelContainer, ContactContainer } from '../styles'
 import { useSelector } from 'react-redux'
-
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 
 export const Contact = ({ username, color }) => {

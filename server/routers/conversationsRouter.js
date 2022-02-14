@@ -4,13 +4,12 @@ const User = require('../models/userModel')
 
 conversationsRouter.post('/add', async (req, res) => {
   const body = req.body
-  const recipients = body.sort().join()
+  const recipients = body.sort().join(', ')
   const recipientsUsers = await Conversation.findOne({ recipients })
 
   if (recipientsUsers) {
     return res.status(400).send('Conversation already exists.')
   }
-  console.log(recipients)
 
   const savedConversation = await new Conversation({
     recipients,

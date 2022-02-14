@@ -49,6 +49,7 @@ export const StyledTab = styled(Tab)(({ theme }) => ({
 
 export const SidebarButton = styled(Button)(({ theme }) => ({
   borderRadius: 0,
+  marginBottom: theme.spacing(1),
 }))
 
 export const ModalContainer = styled(Box)(({ theme }) => ({
@@ -79,7 +80,6 @@ export const ModalFormControl = styled(FormControl)(({ theme }) => ({
   margin: `${theme.spacing(2)} 0`,
   maxHeight: '150px',
   overflowY: 'auto',
-  // border: '1px solid black',
 }))
 
 export const PanelContainer = styled(Box)(({ theme }) => ({
@@ -90,4 +90,18 @@ export const ContactContainer = styled(Box)(({ theme }) => ({
   padding: theme.spacing(1.5),
   display: 'flex',
   alignItems: 'center',
+}))
+
+export const ConversationTab = styled(Tab)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'start',
+  margin: `${theme.spacing(0.5)} 0`,
+}))
+
+export const ConversationContainer = styled(Box)(({ theme }) => ({
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  // border: '1px solid black',
 }))

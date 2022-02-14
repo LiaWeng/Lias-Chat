@@ -43,8 +43,6 @@ const App = () => {
     }
   }, [user]) //eslint-disable-line
 
-  console.log(conversations)
-
   useEffect(() => {
     dispatch({
       type: Number(localStorage.getItem('tab-value')),
