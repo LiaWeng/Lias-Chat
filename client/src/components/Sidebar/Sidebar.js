@@ -9,7 +9,6 @@ import {
 } from '../styles'
 import ChatIcon from '@mui/icons-material/Chat'
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt'
-import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 
 import Conversations from './Conversations'
 import Contacts from './Contacts'
@@ -20,6 +19,13 @@ const Sidebar = () => {
   const user = useSelector(({ user }) => user)
   const tabValue = useSelector(({ tab }) => tab)
 
+  const handleChange = (e, value) => {
+    dispatch({
+      type: 'SELECT_TAB',
+      data: value,
+    })
+  }
+
   return (
     <SidebarContainer>
       <Tabs
@@ -27,7 +33,7 @@ const Sidebar = () => {
         TabIndicatorProps={{
           style: { display: 'none' },
         }}
-        onChange={(e, value) => dispatch({ type: value })}
+        onChange={(e, value) => handleChange(e, value)}
         aria-label={'conversations contacts tab'}
       >
         <StyledTab icon={<ChatIcon />} />

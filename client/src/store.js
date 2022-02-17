@@ -23,12 +23,9 @@ export const userReducer = (state = null, action) => {
 //1: contacts
 export const tabReducer = (state = 0, action) => {
   switch (action.type) {
-    case 0:
-      localStorage.setItem('tab-value', 0)
-      return 0
-    case 1:
-      localStorage.setItem('tab-value', 1)
-      return 1
+    case 'SELECT_TAB':
+      localStorage.setItem('tab-value', action.data)
+      return action.data
     default:
       return state
   }
@@ -69,12 +66,23 @@ export const conversationsReducer = (state = [], action) => {
   }
 }
 
+export const conversationTabReducer = (state = 0, action) => {
+  switch (action.type) {
+    case 'SELECT_CONVERSATION':
+      localStorage.setItem('conversation-value', action.data)
+      return action.data
+    default:
+      return state
+  }
+}
+
 const reducers = combineReducers({
   user: userReducer,
   tab: tabReducer,
   modal: modalReducer,
   contacts: contactsReducer,
   conversations: conversationsReducer,
+  conversationTab: conversationTabReducer,
 })
 
 const store = createStore(reducers)

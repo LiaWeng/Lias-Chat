@@ -3,9 +3,9 @@ import { Grid } from '@mui/material'
 import { useSelector } from 'react-redux'
 
 import Sidebar from './Sidebar/Sidebar'
-// import Popup from './Popup/Popup'
 import AddConversation from './Popup/AddConversation'
 import AddContact from './Popup/AddContact'
+import TextWindow from './TextWindow/TextWindow'
 
 const Dashboard = () => {
   // const user = useSelector(({ user }) => user)
@@ -18,13 +18,12 @@ const Dashboard = () => {
           <Sidebar />
         </Grid>
         <Grid item xs={0} sm={8} md={9}>
-          <div>hi</div>
+          <TextWindow />
         </Grid>
       </Grid>
 
       {tabValue === 0 && <AddConversation />}
       {tabValue === 1 && <AddContact />}
-      {/* <Popup /> */}
     </>
   )
 }

@@ -5,8 +5,8 @@ import {
   Tab,
   Button,
   TextField,
-  Modal,
   FormControl,
+  Avatar,
 } from '@mui/material'
 
 export const LoginContainer = styled(Box)(({ theme }) => ({
@@ -104,4 +104,30 @@ export const ConversationContainer = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'space-between',
   // border: '1px solid black',
+}))
+
+export const ConversationAvatar = styled(Avatar)(({ theme }) => ({
+  height: 'auto',
+  width: 'auto',
+  backgroundColor: 'rgb(255, 255, 255)',
+}))
+
+export const TextWindowContainer = styled(Box)(({ theme }) => ({
+  // border: '1px solid black',
+  padding: theme.spacing(4),
+  height: '100vh',
+  boxSizing: 'border-box',
+  overflowY: 'auto',
+  display: 'flex',
+  flexDirection: 'column',
+}))
+
+export const TextContainer = styled(Box)(({ theme }) => ({
+  // border: '1px solid black',
+  flexGrow: '1',
+  marginBottom: theme.spacing(3),
+}))
+
+export const Textform = styled('form')(({ theme }) => ({
+  display: 'flex',
 }))

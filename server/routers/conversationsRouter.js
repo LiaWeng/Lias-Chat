@@ -24,7 +24,7 @@ conversationsRouter.post('/add', async (req, res) => {
     )
   }
 
-  return res.status(200).send('')
+  return res.status(200).send(savedConversation)
 })
 
 conversationsRouter.post('/get', async (req, res) => {
@@ -32,9 +32,14 @@ conversationsRouter.post('/get', async (req, res) => {
   const { conversations } = await User.findOne({ username }).populate(
     'conversations'
   )
-  console.log(conversations)
 
   return res.status(200).send(conversations)
+})
+
+conversationsRouter.post('/text', async (req, res) => {
+  const { usernames, sender, message } = req.body
+  const newMessage = [sender, message, new Date()]
+  const users = usernames.split(', ')
 })
 
 module.exports = conversationsRouter

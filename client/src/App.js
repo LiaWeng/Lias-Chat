@@ -13,6 +13,7 @@ const App = () => {
   const user = useSelector(({ user }) => user)
   const conversations = useSelector(({ conversations }) => conversations)
 
+  //get logged user
   useEffect(() => {
     const loggedUser = JSON.parse(localStorage.getItem('logged-user-info'))
 
@@ -24,8 +25,8 @@ const App = () => {
     }
   }, []) //eslint-disable-line
 
+  //get contacts and conversations
   useEffect(() => {
-    //get contacts and conversations
     if (user) {
       getContacts(user.username).then((contacts) => {
         dispatch({
@@ -43,9 +44,15 @@ const App = () => {
     }
   }, [user]) //eslint-disable-line
 
+  //get tab and conversation value
   useEffect(() => {
     dispatch({
-      type: Number(localStorage.getItem('tab-value')),
+      type: 'SELECT_TAB',
+      data: Number(localStorage.getItem('tab-value')),
+    })
+    dispatch({
+      type: 'SELECT_CONVERSATION',
+      data: Number(localStorage.getItem('conversation-value')),
     })
   })
 

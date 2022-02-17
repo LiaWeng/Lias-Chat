@@ -33,3 +33,8 @@ export const getConversation = async (username) => {
   const res = await axios.post('/api/conversations/get', { username })
   return res.data
 }
+
+export const addMessage = async (usernames, sender, message) => {
+  const res = await axios.post('api/conversations/text', { usernames, message })
+  return res.data
+}

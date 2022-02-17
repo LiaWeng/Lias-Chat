@@ -40,7 +40,13 @@ const AddConversation = () => {
       setErrorMessage('Please select at least one user.')
     } else {
       try {
-        const x = await addConversation(selected.concat(user.username))
+        const newConversation = await addConversation(
+          selected.concat(user.username)
+        )
+        dispatch({
+          type: 'ADD_CONVERSATION',
+          data: newConversation,
+        })
         dispatch({ type: 'CLOSE_MODAL' })
         setErrorMessage(null)
       } catch (error) {
